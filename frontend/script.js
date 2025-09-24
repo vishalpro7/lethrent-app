@@ -1,4 +1,4 @@
-const API_URL = "https://lethrent-app.onrender.com/api";
+const API_URL = "https://lethrent-app.onrender.com/api"; // Make sure this is your live Render URL
 
 // --- Helper Functions ---
 const showNotification = (message, isError = false) => {
@@ -30,7 +30,7 @@ function handleAuthForms() {
 
 function handlePageSpecificLogic() {
     const path = window.location.pathname;
-    if (path.endsWith('vehicles.html')) loadAllVehicles();
+    if (path.endsWith('vehicles.html') || path === '/' || path.endsWith('index.html')) loadAllVehicles();
     else if (path.endsWith('dashboard.html')) setupOwnerDashboard();
     else if (path.endsWith('bookings.html')) loadMyBookings();
 }
@@ -82,7 +82,6 @@ async function loadAllVehicles() {
     }
     vehicles.forEach((v) => {
       const card = document.createElement("div");
-      // This logic now correctly shows the status and disables the button if not available
       card.className = `bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col ${!v.is_available ? 'opacity-60' : ''}`;
       card.innerHTML = `
         <h3 class="text-2xl font-bold text-gray-800">${v.brand} ${v.model}</h3>
@@ -172,6 +171,7 @@ async function bookVehicle(vehicleId) {
     }
 }
 
+// THE FIX IS HERE (in the card.innerHTML part)
 async function loadMyBookings() {
     const bookingList = document.getElementById("booking-list");
     const renterId = localStorage.getItem("user_id");
@@ -181,21 +181,25 @@ async function loadMyBookings() {
         const bookings = await res.json();
         bookingList.innerHTML = "";
         if (bookings.length === 0) {
-            bookingList.innerHTML = '<p class="text-gray-500">You have no bookings.</p>';
+            bookingList.innerHTML = '<p class="text-gray-500 text-center">You have not made any bookings yet.</p>';
             return;
         }
         bookings.forEach(b => {
             const card = document.createElement("div");
             card.className = "bg-white p-6 rounded-lg shadow-md";
+            // This now correctly displays the vehicle's brand and model
             card.innerHTML = `
-                <h3 class="text-xl font-bold text-gray-800">Booking #${b.booking_id}</h3>
-                <p class="text-gray-600 mt-2">Vehicle: <span class="font-semibold">${b.brand} ${b.model}</span></p>
-                <p class="text-gray-600">From: <span class="font-semibold">${new Date(b.start_date).toLocaleDateString()}</span> → To: <span class="font-semibold">${new Date(b.end_date).toLocaleDateString()}</span></p>
-                <p class="mt-4 text-sm capitalize">Status: <span class="text-green-600 font-semibold">${b.status}</span></p>`;
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-gray-800">${b.brand} ${b.model}</h3>
+                    <span class="text-sm font-semibold capitalize px-3 py-1 rounded-full ${b.status === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">${b.status}</span>
+                </div>
+                <p class="text-gray-600 mt-2">Booking ID: <span class="font-semibold">#${b.booking_id}</span></p>
+                <p class="text-gray-600">Dates: <span class="font-semibold">${new Date(b.start_date).toLocaleDateString()}</span> → <span class="font-semibold">${new Date(b.end_date).toLocaleDateString()}</span></p>
+                `;
             bookingList.appendChild(card);
         });
     } catch (err) {
-        bookingList.innerHTML = '<p class="text-red-500">Failed to load your bookings.</p>';
+        bookingList.innerHTML = '<p class="text-red-500 text-center">Failed to load your bookings.</p>';
     }
 }
 
