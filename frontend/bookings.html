@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - LethRent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-900 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white">🏍 LethRent</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
+                <a href="vehicles.html" class="hover:text-cyan-400 transition">Browse Vehicles</a>
+                <a href="bookings.html" class="hover:text-cyan-400 transition">My Bookings</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8">My Bookings</h1>
+        
+        <!-- Booking List -->
+        <section id="booking-list" class="space-y-6">
+            <!-- Booking cards will be dynamically loaded here -->
+            <!-- Example Card: 
+            <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800">Booking #1</h3>
+                    <p class="text-gray-600">Vehicle ID: 1 - Royal Enfield Classic 350</p>
+                    <p class="text-gray-500">From: 2025-09-25 To: 2025-09-27</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <span class="text-lg font-semibold capitalize px-4 py-2 rounded-full bg-yellow-100 text-yellow-800">
+                        Pending
+                    </span>
+                </div>
+            </div>
+            -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 LethRent. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LethRent - Your Ride, Your Rules</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-900 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white">🏍 LethRent</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
+                <a href="vehicles.html" class="hover:text-cyan-400 transition">Browse Vehicles</a>
+                <a href="dashboard.html" class="hover:text-cyan-400 transition">Dashboard</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="login.html" class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-lg transition">Login</a>
+                <a href="signup.html" class="bg-cyan-600 hover:bg-cyan-500 py-2 px-4 rounded-lg transition">Sign Up</a>
+            </div>
+            <!-- Mobile Menu Button (optional) -->
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main>
+        <div class="relative h-[60vh] flex items-center justify-center text-white text-center px-6">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Motorbike">
+            <div class="relative z-10">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">Your Ride, Your Rules</h1>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">Owners can list vehicles. Renters can book rides. Simple, fast, and secure.</p>
+                <a href="vehicles.html" class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105">
+                    Browse Vehicles
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 LethRent. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

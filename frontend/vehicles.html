@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Vehicles - LethRent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-900 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white">🏍 LethRent</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
+                <a href="vehicles.html" class="hover:text-cyan-400 transition">Browse Vehicles</a>
+                <a href="dashboard.html" class="hover:text-cyan-400 transition">Dashboard</a>
+                <a href="bookings.html" class="hover:text-cyan-400 transition">My Bookings</a>
+            </div>
+             <div class="hidden md:flex items-center space-x-4">
+                <a href="login.html" class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-lg transition">Login</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8">Find Your Next Ride</h1>
+        
+        <!-- Vehicle List -->
+        <section id="vehicle-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Vehicle cards will be dynamically loaded here -->
+            <!-- Example Card Structure:
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                <img src="https://placehold.co/600x400/cccccc/ffffff?text=Vehicle" alt="Vehicle Image" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Brand Model</h3>
+                            <p class="text-gray-500">REG-NUMBER</p>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">Available</span>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-900 my-4">₹1200<span class="text-base font-normal text-gray-500">/day</span></p>
+                    <button class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg transition">Book Now</button>
+                </div>
+            </div>
+            -->
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 LethRent. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="script.js" defer></script>
+</body>
+</html>
