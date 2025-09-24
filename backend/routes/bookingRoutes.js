@@ -15,23 +15,26 @@ router.post("/", async (req, res) => {
     }
     const actualRenterId = renterQuery.rows[0].renter_id;
 
+    // THE DEFINITIVE FIX:
+    // The status is now set to 'confirmed' immediately upon creation.
     const result = await db.query(
       "INSERT INTO bookings (vehicle_id, renter_id, start_date, end_date, status) VALUES ($1, $2, $3, $4, 'confirmed') RETURNING *",
       [vehicle_id, actualRenterId, start_date, end_date]
     );
 
+    // This part remains the same, marking the vehicle as unavailable.
     await db.query("UPDATE vehicles SET is_available = false WHERE vehicle_id = $1", [vehicle_id]);
+
     res.json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Get bookings of a renter (THE FIX IS HERE)
+// Get bookings of a renter
 router.get("/:renter_id", async (req, res) => {
   const userId = req.params.renter_id;
   try {
-    // This query now joins with the vehicles table to get the brand and model.
     const result = await db.query(
         `SELECT b.*, v.brand, v.model FROM bookings b
          JOIN renters r ON b.renter_id = r.renter_id
@@ -46,4 +49,5 @@ router.get("/:renter_id", async (req, res) => {
 });
 
 module.exports = router;
+
 
