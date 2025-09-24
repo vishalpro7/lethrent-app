@@ -4,6 +4,9 @@ const db = require("../db");
 
 // Create booking
 router.post("/", async (req, res) => {
+  // THIS IS THE NEW LOG MESSAGE FOR PROOF
+  console.log("--- Executing Booking Creation: DEFINITIVE FIX v2 ---");
+
   const { vehicle_id, renter_id: userId, start_date, end_date } = req.body;
   try {
     const renterQuery = await db.query(
@@ -15,18 +18,15 @@ router.post("/", async (req, res) => {
     }
     const actualRenterId = renterQuery.rows[0].renter_id;
 
-    // THE DEFINITIVE FIX:
-    // The status is now set to 'confirmed' immediately upon creation.
     const result = await db.query(
       "INSERT INTO bookings (vehicle_id, renter_id, start_date, end_date, status) VALUES ($1, $2, $3, $4, 'confirmed') RETURNING *",
       [vehicle_id, actualRenterId, start_date, end_date]
     );
 
-    // This part remains the same, marking the vehicle as unavailable.
     await db.query("UPDATE vehicles SET is_available = false WHERE vehicle_id = $1", [vehicle_id]);
-
     res.json(result.rows[0]);
   } catch (err) {
+    console.error("ERROR during booking creation:", err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -50,4 +50,5 @@ router.get("/:renter_id", async (req, res) => {
 
 module.exports = router;
 
+    
 
